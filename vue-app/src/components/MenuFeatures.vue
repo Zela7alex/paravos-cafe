@@ -57,7 +57,7 @@
 export default {}
 </script>
 
-<style>
+<style scoped>
 /* Center aligned the text within the three columns below the carousel */
 .marketing .col-lg-4 {
   margin-bottom: 1.5rem;

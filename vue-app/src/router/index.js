@@ -6,6 +6,7 @@ import RewardsView from '../views/RewardsView.vue'
 import OrderView from '../views/OrderView.vue'
 import OurStory from '../views/OurStory.vue'
 import SignIn from '../views/SignIn.vue'
+import ProductsList from '../components/ProductsList.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,12 @@ const routes = [
     path: '/order',
     name: 'Order',
     component: OrderView,
+  },
+  {
+    // Will redirect in menu view to products by category
+    path: '/menu/:category',
+    name: 'Product',
+    component: ProductsList,
   },
 ]
 

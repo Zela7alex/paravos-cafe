@@ -4,24 +4,49 @@ import Axios from 'axios'
 
 Vue.use(Vuex)
 
-const homeUrl = 'http://localhost:3000'
-const pagesUrl = `${homeUrl}/pages`
+const baseUrl = 'http://localhost:3000'
+const categoriesUrl = `${baseUrl}/categories`
+const productsUrl = `${baseUrl}/products`
 
 export default new Vuex.Store({
   strict: true,
   state: {
-    pages: [],
+    categories: [],
+    products: [],
+    allPoducts: [],
   },
   getters: {},
   mutations: {
-    setPages(state, pages) {
-      state.pages = pages
+    setCategories(state, categories) {
+      state.categories = categories
+    },
+    setProducts(state, products) {
+      state.products = products
+    },
+    setAllProducts(state, allProducts) {
+      state.allProducts = allProducts
     },
   },
   actions: {
-    // When action invoked, Pages will be grabbed from pagesUrl and added to state through axios
-    async setPagesAction(context) {
-      context.commit('setPages', (await Axios.get(pagesUrl)).data)
+    // When action invoked, categories  will be grabbed from categoriesUrl and added to state through axios
+    async setCategoriesAction(context) {
+      context.commit('setCategories', (await Axios.get(categoriesUrl)).data)
+    },
+    //Retrieving products from api based on it's category
+    async setProductsByCatAction(context, category) {
+      let url
+      // Grabbing products by their specified category
+      if (category != 'all') {
+        url = `${productsUrl}/${category}`
+      } else {
+        // Grabbing all products despite category
+        url = `${productsUrl}`
+      }
+      context.commit('setProducts', (await Axios.get(url)).data)
+    },
+    // Action to retrieve only "all products"
+    async setAllProductsAction(context) {
+      context.commit('setAllProducts', (await Axios.get(productsUrl)).data)
     },
   },
   modules: {},

@@ -64,7 +64,7 @@
 export default {}
 </script>
 
-<style>
+<style scoped>
 .nav-scroller {
   z-index: 2;
   height: 2.75rem;

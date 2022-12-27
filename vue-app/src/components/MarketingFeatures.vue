@@ -103,7 +103,7 @@
 export default {}
 </script>
 
-<style>
+<style scoped>
 .featurette-divider {
   margin: 5rem 0; /* Space out the Bootstrap <hr> more */
 }

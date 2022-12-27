@@ -12,4 +12,16 @@ router.get('/', (req, res) => {
     })
 })
 
+//!-- Get /products/category --- 
+router.get('/:category', (req, res) => {
+  const cat = req.params.category
+  Product.find({ category: cat })
+    .then((products) => res.json(products))
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+})
+
+
 module.exports = router

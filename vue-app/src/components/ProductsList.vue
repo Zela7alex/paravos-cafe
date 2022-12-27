@@ -3,7 +3,7 @@
     <div class="col"><CategoriesList /></div>
     <div class="col-10">
       <div class="row">
-        <div class="col-3 mt-3" v-for="(p, i) in allProducts" :key="i">
+        <div class="col-3 mt-3" v-for="(p, i) in products" :key="i">
           <div>
             <img
               :src="require(`../assets/media/images/products/${p.image}`)"
@@ -27,16 +27,21 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import CategoriesList from '../components/CategoriesList'
 
 export default {
   components: { CategoriesList },
   computed: {
-    ...mapState(['allProducts']),
+    ...mapState(['products']),
   },
-  methods: {},
-  created() {},
+  methods: {
+    ...mapActions(['setProductsByCatAction']),
+  },
+  created() {
+    const category = this.$route.params.category
+    this.setProductsByCatAction(category)
+  },
   data() {
     return {}
   },
