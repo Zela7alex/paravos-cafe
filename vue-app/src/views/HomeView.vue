@@ -4,7 +4,6 @@
       <CarouselHome />
       <MenuFeatures />
       <MarketingFeatures />
-      <FooterHome />
     </body>
   </div>
 </template>
@@ -12,14 +11,12 @@
 import CarouselHome from '../components/CarouselHome'
 import MenuFeatures from '../components/MenuFeatures'
 import MarketingFeatures from '../components/MarketingFeatures'
-import FooterHome from '../components/FooterHome'
 
 export default {
   components: {
     CarouselHome,
     MenuFeatures,
     MarketingFeatures,
-    FooterHome,
   },
 }
 </script>

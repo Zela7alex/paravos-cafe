@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mb-2 mb-md-0">
             <li class="nav-item">
-              <router-link :to="{ name: 'Menu' }">
+              <router-link :to="{ path: '/menu/all' }">
                 <a class="nav-link" aria-current="page">Menu</a></router-link
               >
             </li>
@@ -126,7 +126,7 @@ a:focus::after {
 }
 
 .sign-in {
-  position: absolute;
+  position: fixed;
   left: 25rem;
   width: 5rem;
 }
@@ -274,10 +274,10 @@ navbarCollapse {
     right: rem;
   }
 
-  .sign-in {
+  /* .sign-in {
     position: relative;
     right: 0rem;
-  }
+  } */
 }
 
 @media (max-width: 540px) {
@@ -299,10 +299,10 @@ navbarCollapse {
     left: 0rem;
   }
 
-  .sign-in {
+  /* .sign-in {
     position: relative;
     left: 0rem;
-  }
+  } */
 }
 
 @media (max-width: 280px) {

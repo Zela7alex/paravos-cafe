@@ -1,8 +1,9 @@
 <template>
   <div class="row mt-3">
+    <BannerMarketing class="banner" />
     <div class="col"><CategoriesList /></div>
     <div class="col-10">
-      <div class="row">
+      <div class="row products">
         <div class="col-3 mt-3" v-for="(p, i) in products" :key="i">
           <div>
             <img
@@ -15,7 +16,7 @@
           </h3>
           <p>{{ p.description }}</p>
           <div class="price-cart">
-            <p>{{ p.price }}</p>
+            <p>{{ p.price | currency }}</p>
             <div>
               <button class="btn btn-primary">Add To Cart</button>
             </div>
@@ -29,9 +30,10 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import CategoriesList from '../components/CategoriesList'
+import BannerMarketing from '../components/BannerMarketing'
 
 export default {
-  components: { CategoriesList },
+  components: { CategoriesList, BannerMarketing },
   computed: {
     ...mapState(['products']),
   },
@@ -39,8 +41,15 @@ export default {
     ...mapActions(['setProductsByCatAction']),
   },
   created() {
+    // When component is created, route will redirect based on category selected and get products based on cat as direcetd in action >>
     const category = this.$route.params.category
     this.setProductsByCatAction(category)
+  },
+  beforeRouteUpdate(to, from, next) {
+    // This will allow $route to actually update without needing to refresh the page after the action to fetch products based on category selected, has been called in created()
+    const category = to.params.category
+    this.setProductsByCatAction(category)
+    next()
   },
   data() {
     return {}
@@ -52,7 +61,6 @@ export default {
 img {
   width: 200px;
   height: 200px;
-  margin-top: 10%;
   border-radius: 20px;
   object-fit: cover;
   box-shadow: 1px 1px 3px 1px rgb(148, 153, 150);
@@ -69,27 +77,61 @@ p {
   color: var(--light-brown);
 }
 
-/* on products div for ALL products */
-.col-10 {
-  margin-top: 10%;
-}
 /* on categories list and ALL products div */
 .row {
   margin: 0 auto;
   width: 100%;
+  margin-top: 10rem;
+  margin-bottom: 2rem;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 /* on each individual product*/
 .col-3 {
-  height: 400px;
+  width: 14rem;
+  height: 420px;
+  padding-top: 15px;
   position: relative;
+  margin-right: 3%;
 }
 /* on each individual product, price & add to cart btn only*/
 .price-cart {
   position: absolute;
-  bottom: -15px;
+  bottom: 5px;
 }
-
+/* Add to cart button*/
 .btn {
   background-color: var(--light-green);
+}
+.banner {
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 93px;
+}
+.col-10 {
+  width: 75%;
+}
+
+@media (max-width: 700px) {
+  /* Div holding product images, p tags and buttons*/
+  .col-10 {
+    width: 100%;
+  }
+  /* on each individual product*/
+  .products {
+    margin-top: 5%;
+  }
+  .col-3:nth-of-type(odd) {
+    margin-right: 5%;
+  }
+  .col {
+    padding: 0;
+    margin: 0;
+  }
 }
 </style>

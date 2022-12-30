@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import MenuView from '../views/MenuView.vue'
 import RewardsView from '../views/RewardsView.vue'
 import OrderView from '../views/OrderView.vue'
 import OurStory from '../views/OurStory.vue'
@@ -15,11 +14,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: HomeView,
-  },
-  {
-    path: '/menu',
-    name: 'Menu',
-    component: MenuView,
   },
   {
     path: '/rewards',
@@ -45,6 +39,11 @@ const routes = [
     // Will redirect in menu view to products by category
     path: '/menu/:category',
     name: 'Product',
+    component: ProductsList,
+  },
+  {
+    path: '/menu/all',
+    name: 'Menu',
     component: ProductsList,
   },
 ]

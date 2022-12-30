@@ -2,7 +2,7 @@
   <div>
     <hr class="featurette-divider" />
 
-    <div class="row featurette">
+    <div class="row featurette" id="cup">
       <div class="col-md-7">
         <h2 class="featurette-heading fw-normal lh-1">
           First featurette heading.
@@ -33,7 +33,7 @@
 
     <hr class="featurette-divider" />
 
-    <div class="row featurette">
+    <div class="row featurette" id="live-performances">
       <div class="col-md-7 order-md-2">
         <h2 class="featurette-heading fw-normal lh-1">
           Oh yeah, it’s that good.
@@ -65,7 +65,7 @@
 
     <hr class="featurette-divider" />
 
-    <div class="row featurette">
+    <div class="row featurette" id="paravos-jobs">
       <div class="col-md-7">
         <h2 class="featurette-heading fw-normal lh-1">
           And lastly, this one. <span class="text-muted">Checkmate.</span>
@@ -100,7 +100,15 @@
 </template>
 
 <script>
-export default {}
+export default {
+  mounted() {
+    var scrollSection = this.$router.currentRoute.hash.replace('#', '')
+    if (scrollSection)
+      this.$nextTick(() =>
+        window.document.getElementById(scrollSection).scrollIntoView()
+      )
+  },
+}
 </script>
 
 <style scoped>

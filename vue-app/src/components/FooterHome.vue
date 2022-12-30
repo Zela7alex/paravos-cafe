@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <footer class="container">
+  <div class="ft">
+    <footer>
       <p class="float-end"><a href="#">Back to top</a></p>
       <p>
         &copy; 2021–2022 Paravos LLC. &middot; <a href="#">Privacy</a> &middot;
@@ -14,4 +14,15 @@
 export default {}
 </script>
 
-<style scoped></style>
+<style scoped>
+footer {
+  height: 10vh;
+  padding: 20px 10px;
+  width: 100%;
+  background-color: rgb(31, 72, 62);
+  color: var(--background);
+}
+a {
+  color: rgb(131, 179, 131);
+}
+</style>

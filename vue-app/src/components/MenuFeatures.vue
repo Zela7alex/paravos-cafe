@@ -59,9 +59,12 @@ export default {}
 
 <style scoped>
 /* Center aligned the text within the three columns below the carousel */
-.marketing .col-lg-4 {
+.marketing {
   margin-bottom: 1.5rem;
   text-align: center;
+  margin: 0 auto;
+}
+.col-lg-4 {
   margin: 0 auto;
 }
 
