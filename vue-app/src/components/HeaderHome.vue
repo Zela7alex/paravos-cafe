@@ -56,12 +56,19 @@
         <h1 id="logo-name">Paravos cafe</h1>
         <h2 id="slogan-1">Made Just for You.</h2>
       </div>
-      <i class="fa-solid fa-bag-shopping bag"></i>
+      <i class="fa-solid fa-bag-shopping bag">
+        <CartCount id="cart-count" />
+      </i>
     </nav>
   </div>
 </template>
 <script>
-export default {}
+import CartCount from '../components/CartCount'
+export default {
+  components: {
+    CartCount,
+  },
+}
 </script>
 
 <style scoped>
@@ -140,6 +147,10 @@ navbarCollapse {
   width: 10vw;
 }
 
+.home-link::after {
+  display: none;
+}
+
 #paravos-logo {
   width: 100%;
   padding: 0px;
@@ -186,6 +197,19 @@ navbarCollapse {
 
 .bag:hover {
   color: rgb(227, 224, 216);
+}
+#cart-count {
+  width: 1rem;
+  height: 1rem;
+  padding-top: 2px;
+  text-align: center;
+  font-size: 12px;
+  position: fixed;
+  z-index: 1;
+  top: 5%;
+  left: 98.1%;
+  background: rgb(187, 182, 154, 0.7);
+  border-radius: 4px;
 }
 
 @media (max-width: 90em) {

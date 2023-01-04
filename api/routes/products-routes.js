@@ -24,21 +24,4 @@ router.get('/:category', (req, res) => {
 })
 
 
-//!-- Get /products/category --- 
-router.get('/count/:category', (req, res) => {
-  const cat = req.params.category
-
-  if (cat === 'all') {
-    Product.countDocuments({}, (error, count) => res.json(count))
-  } else {
-    Product.countDocuments({ category: cat }, (error, count) => res.json(count))
-  }
-  // Product.find({ category: cat })
-  //   .then((products) => res.json(products))
-  //   .catch((err) => {
-  //     console.log(err)
-  //     res.status(500).json(err)
-  //   })
-})
-
 module.exports = router

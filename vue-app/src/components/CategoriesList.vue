@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col">
         <ul class="nav flex-column mt-3">
-          <li class="nav-item">
+          <li class="nav-item" id="nav-item">
             <router-link class="nav-link" to="/menu/all">All</router-link>
           </li>
           <li v-for="(cat, i) in categories" :key="i" class="nav-item">
@@ -23,6 +23,10 @@ export default {
   computed: {
     ...mapState(['categories']),
   },
+  data() {
+    return {}
+  },
+  methods: {},
 }
 </script>
 

@@ -5,22 +5,25 @@
     <div class="col-10">
       <div class="row products">
         <div class="col-3 mt-3" v-for="(p, i) in products" :key="i">
-          <div>
-            <img
-              :src="require(`../assets/media/images/products/${p.image}`)"
-              class="img-fluid"
-            />
-          </div>
-          <h3>
-            {{ p.name }}
-          </h3>
-          <p>{{ p.description }}</p>
-          <div class="price-cart">
-            <p>{{ p.price | currency }}</p>
+          <router-link
+            :to="'/menu/product-summary/' + p.slug"
+            class="product-sum"
+          >
             <div>
-              <button class="btn btn-primary">Add To Cart</button>
+              <img
+                :src="require(`../assets/media/images/products/${p.image}`)"
+                class="img-fluid"
+              />
             </div>
-          </div>
+            <h3>
+              {{ p.name }}
+            </h3>
+            <p>{{ p.description }}</p>
+            <div class="price-cart">
+              <p>{{ p.price | currency }}</p>
+              <p id="cal">- {{ p.calories }} cal</p>
+            </div></router-link
+          >
         </div>
       </div>
     </div>
@@ -41,7 +44,7 @@ export default {
     ...mapActions(['setProductsByCatAction']),
   },
   created() {
-    // When component is created, route will redirect based on category selected and get products based on cat as direcetd in action >>
+    // When component is created, route will redirect based on category selected and get products based on cat as directed in action >>
     const category = this.$route.params.category
     this.setProductsByCatAction(category)
   },
@@ -93,15 +96,21 @@ p {
 /* on each individual product*/
 .col-3 {
   width: 14rem;
-  height: 420px;
+  height: 400px;
   padding-top: 15px;
   position: relative;
   margin-right: 3%;
+  border: 1px solid rgba(171, 170, 165, 0.8);
+  border-radius: 5px;
 }
-/* on each individual product, price & add to cart btn only*/
+/* on each individual product, price & cal to only*/
 .price-cart {
+  display: flex;
   position: absolute;
-  bottom: 5px;
+  bottom: 2px;
+}
+#cal {
+  margin-left: 85px;
 }
 /* Add to cart button*/
 .btn {
@@ -115,6 +124,10 @@ p {
 }
 .col-10 {
   width: 75%;
+}
+/* Link to product summary */
+.product-sum {
+  text-decoration: none;
 }
 
 @media (max-width: 700px) {

@@ -6,6 +6,7 @@ import OrderView from '../views/OrderView.vue'
 import OurStory from '../views/OurStory.vue'
 import SignIn from '../views/SignIn.vue'
 import ProductsList from '../components/ProductsList.vue'
+import ProductSummary from '../views/ProductSummary.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ const routes = [
     path: '/menu/all',
     name: 'Menu',
     component: ProductsList,
+  },
+  {
+    path: '/menu/product-summary/:product',
+    name: 'Product-Summary',
+    component: ProductSummary,
   },
 ]
 
