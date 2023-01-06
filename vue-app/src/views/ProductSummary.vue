@@ -23,11 +23,11 @@
           {{ p.name }}
         </h3>
         <p id="description">{{ p.description }}</p>
-        <!-------------------------------------------------->
+        <!-------------- Looping through entire toppings array ---------->
         <div class="checkbox-div">
           <div id="checkboxes" v-for="(toppings, i) in p.toppings" :key="i">
             <label id="type-topping">{{ Object.keys(toppings)[0] }}</label>
-            <!---------------------------------------------->
+            <!-------Looping over each object in toppings array---------->
             <div
               class="all-products"
               id="pruduct-names"
@@ -37,7 +37,7 @@
               <div class="checkbox-product-div">
                 <input
                   type="checkbox"
-                  @click="toppingToggle(p.toppings[i], value)"
+                  @click="toppingToggle(p.toppings[i], value), (checked = true)"
                 />
                 <p id="each-product">{{ key }}</p>
               </div>
@@ -56,7 +56,7 @@
         </div>
         <div class="price-cart">
           <button class="btn btn-primary">
-            <p id="add">Add To Cart</p>
+            <p id="add" @click="handleAddProduct(p)">Add To Cart</p>
             <p id="price">{{ p.price | currency }}</p>
           </button>
         </div>
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import BannerMarketing from '../components/BannerMarketing'
 import CategoriesList from '../components/CategoriesList'
 
@@ -78,12 +78,21 @@ export default {
   data() {
     return {
       urlSlug: window.location.pathname.slice(22, 44),
+      toppingsSelected: [],
     }
   },
   methods: {
-    toppingToggle(objectToMutateInState, valueFromArray) {
-      console.log(objectToMutateInState)
-      console.log(valueFromArray)
+    ...mapMutations(['cart/addProduct']),
+    toppingToggle(typeOfTop, toppingsArrayIndex) {
+      this.toppingsSelected =
+        typeOfTop[Object.keys(typeOfTop)[0]][toppingsArrayIndex]
+    },
+    handleAddProduct(product) {
+      let productWithToppings = {
+        name: product,
+        toppings: this.toppingsSelected,
+      }
+      this.addProduct(productWithToppings)
     },
   },
   created() {},
