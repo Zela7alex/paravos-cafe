@@ -2,7 +2,8 @@
   <div>
     <div class="float-right">
       <span v-if="itemCount > 0">
-        {{ itemCount }} item(s) {{ totalPrice | currency }}
+        <p>{{ itemCount }}</p>
+        <p id="price">{{ totalPrice | currency }}</p>
       </span>
       <span v-else>0</span>
     </div>
@@ -24,6 +25,13 @@ export default {
 
 <style scoped>
 .float-right {
+  width: 100%;
   color: rgb(214, 212, 202);
+  position: relative;
+}
+#price {
+  position: fixed;
+  right: 2.5rem;
+  top: 4rem;
 }
 </style>

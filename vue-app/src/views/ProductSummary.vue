@@ -82,7 +82,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['cart/addProduct']),
+    ...mapMutations({ addProduct: 'cart/addProduct' }),
     toppingToggle(typeOfTop, toppingsArrayIndex) {
       this.toppingsSelected =
         typeOfTop[Object.keys(typeOfTop)[0]][toppingsArrayIndex]
@@ -90,6 +90,7 @@ export default {
     handleAddProduct(product) {
       let productWithToppings = {
         name: product,
+        price: product.price,
         toppings: this.toppingsSelected,
       }
       this.addProduct(productWithToppings)

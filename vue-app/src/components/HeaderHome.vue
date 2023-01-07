@@ -165,7 +165,7 @@ navbarCollapse {
   color: rgb(141, 127, 103);
   text-align: center;
   margin: 0 auto;
-  padding-right: 36%;
+  padding-right: 25%;
   font-family: 'Times New Roman', Times, serif;
   width: 60%;
 }
@@ -190,7 +190,7 @@ navbarCollapse {
 
 .bag {
   font-size: 23px;
-  padding-right: 1em;
+  padding-right: 3rem;
   cursor: pointer;
   color: rgb(164, 157, 134);
 }
@@ -199,7 +199,7 @@ navbarCollapse {
   color: rgb(227, 224, 216);
 }
 #cart-count {
-  width: 1rem;
+  width: 1.5rem;
   height: 1rem;
   padding-top: 2px;
   text-align: center;
@@ -207,7 +207,7 @@ navbarCollapse {
   position: fixed;
   z-index: 1;
   top: 5%;
-  left: 98.1%;
+  left: 96.1%;
   background: rgb(187, 182, 154, 0.7);
   border-radius: 4px;
 }
