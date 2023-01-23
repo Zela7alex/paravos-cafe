@@ -56,17 +56,27 @@
         <h1 id="logo-name">Paravos cafe</h1>
         <h2 id="slogan-1">Made Just for You.</h2>
       </div>
-      <i class="fa-solid fa-bag-shopping bag">
-        <CartCount id="cart-count" />
-      </i>
+      <router-link id="cart-router" :to="{ name: 'Cart' }"
+        ><CartCount id="cart-count" /><i
+          class="fa-solid fa-bag-shopping bag"
+        ></i
+      ></router-link>
     </nav>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import CartCount from '../components/CartCount'
 export default {
   components: {
     CartCount,
+  },
+  computed: {
+    ...mapGetters({
+      // Bringing in the count for amount of items in cart
+      itemCount: 'cart/itemCount',
+      totalPrice: 'cart/totalPrice',
+    }),
   },
 }
 </script>
@@ -91,6 +101,7 @@ export default {
 .navbar {
   background-color: rgb(7, 47, 38);
   border-bottom: 5px solid rgba(13, 10, 10, 0.5);
+  z-index: 2;
 }
 
 .container-fluid {
@@ -129,12 +140,12 @@ a:focus::after {
 
 .right-side {
   position: absolute;
-  left: 25rem;
+  left: 95%;
 }
 
 .sign-in {
   position: fixed;
-  left: 25rem;
+  left: 100rem;
   width: 5rem;
 }
 
@@ -163,7 +174,6 @@ navbarCollapse {
 #slogan {
   font-size: 1.5em;
   color: rgb(141, 127, 103);
-  text-align: center;
   margin: 0 auto;
   padding-right: 25%;
   font-family: 'Times New Roman', Times, serif;
@@ -189,6 +199,8 @@ navbarCollapse {
 }
 
 .bag {
+  width: 3rem;
+  padding-top: 1rem;
   font-size: 23px;
   padding-right: 3rem;
   cursor: pointer;
@@ -199,41 +211,48 @@ navbarCollapse {
   color: rgb(227, 224, 216);
 }
 #cart-count {
-  width: 1.5rem;
-  height: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
   padding-top: 2px;
   text-align: center;
   font-size: 12px;
-  position: fixed;
   z-index: 1;
-  top: 5%;
-  left: 96.1%;
+  position: absolute;
+  bottom: 80%;
+  left: 35%;
   background: rgb(187, 182, 154, 0.7);
   border-radius: 4px;
 }
+#cart-router {
+  z-index: 1;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
 
-@media (max-width: 90em) {
+@media (max-width: 1440px) {
   .right-side {
     position: absolute;
-    left: 40rem;
+    left: 55rem;
   }
 
   .sign-in {
     position: absolute;
-    left: 34rem;
+    left: 50rem;
     width: 5rem;
   }
 }
 
-@media (max-width: 70em) {
+@media (min-width: 1300px) {
   .right-side {
     position: absolute;
-    left: 33rem;
+    left: 45rem;
   }
 
   .sign-in {
     position: absolute;
-    left: 27rem;
+    left: 40rem;
     width: 5rem;
   }
 }
