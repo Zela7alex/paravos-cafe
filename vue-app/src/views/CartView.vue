@@ -26,9 +26,24 @@
             </td>
             <td>{{ c.quantity }}</td>
             <td>
-              <button class="btn small btn-primary mx-1">+</button>
-              <button class="btn small btn-primary mx-1">-</button>
-              <button class="btn small btn-primary mx-1">remove</button>
+              <button
+                class="btn small btn-primary mx-1"
+                @click="handleAddProduct(c.product)"
+              >
+                +
+              </button>
+              <button
+                class="btn small btn-primary mx-1"
+                @click="handleSubtractProduct(c.product.id)"
+              >
+                -
+              </button>
+              <button
+                class="btn small btn-primary mx-1"
+                @click="handleRemoveProduct(c.product.id)"
+              >
+                remove
+              </button>
             </td>
             <td>{{ c.product.price | currency }}</td>
             <td>{{ (c.product.price * c.quantity) | currency }}</td>
@@ -42,7 +57,12 @@
           </tr>
           <tr>
             <td colspan="5">
-              <button class="btn btn-danger float-left">Clear Cart</button>
+              <button
+                class="btn btn-danger float-left"
+                @click="handleClearCart"
+              >
+                Clear Cart
+              </button>
               <router-link to="/checkout" class="btn btn-primary float-right"
                 >Checkout</router-link
               >
@@ -55,7 +75,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
 import CategoriesList from '../components/CategoriesList'
 import BannerMarketing from '../components/BannerMarketing'
 export default {
@@ -67,6 +87,28 @@ export default {
       itemCount: 'cart/itemCount',
       totalPrice: 'cart/totalPrice',
     }),
+    ...mapActions({
+      clearCartData: 'cart/clearCartData',
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      addProduct: 'cart/addProduct',
+      subtractProduct: 'cart/subtractProduct',
+      removeProduct: 'cart/removeProduct',
+    }),
+    handleAddProduct(product) {
+      this.addProduct(product)
+    },
+    handleSubtractProduct(productById) {
+      this.subtractProduct(productById)
+    },
+    handleRemoveProduct(productById) {
+      this.removeProduct(productById)
+    },
+    handleClearCart() {
+      this.clearCartData()
+    },
   },
 }
 </script>
@@ -83,8 +125,8 @@ export default {
 }
 .col-9 {
   width: 80%;
-  height: 90vh;
-  margin-top: 30vh;
+  height: 100%;
+  margin-top: 20vh;
   margin-left: 5%;
   display: flex;
   flex-direction: column;

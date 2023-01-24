@@ -15,7 +15,7 @@ export default {
       ),
   },
   mutations: {
-    //Adding products to cart
+    // Adding products to cart
     addProduct(state, product) {
       const cartItem = state.cart.find(
         (cartItem) => cartItem.product.id == product.id
@@ -24,6 +24,37 @@ export default {
         cartItem.quantity++
       } else {
         state.cart.push({ product: product, quantity: 1 })
+      }
+    },
+
+    // Subtrcting products from cart
+    subtractProduct(state, productById) {
+      const cartItem = state.cart.find(
+        (cartItem) => cartItem.product.id == productById
+      )
+      // if cart item is equal to 1, removing item
+      if (cartItem.quantity == 1) {
+        //finding the product selected from cart
+        const index = state.cart.findIndex(
+          (cartItem) => cartItem.product.id == productById
+        )
+        if (index != -1) {
+          state.cart.splice(index, 1)
+        }
+      } else {
+        cartItem.quantity--
+      }
+    },
+
+    // Removing products from cart
+    removeProduct(state, productById) {
+      //finding the product selected from cart
+      const index = state.cart.findIndex(
+        (cartItem) => cartItem.product.id == productById
+      )
+      // Product will be removed as long as there is a product starting at index 1
+      if (index != -1) {
+        state.cart.splice(index, 1)
       }
     },
     //LocalStorage data being loaded
@@ -51,6 +82,10 @@ export default {
         () => context.dispatch('storeCartData'),
         { deep: true }
       )
+    },
+    // Clearing cart data
+    clearCartData(context) {
+      context.commit('setCartData', [])
     },
   },
 }
