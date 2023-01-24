@@ -95,6 +95,7 @@ export default {
         name: product.name,
         price: product.price,
         toppings: this.toppingsSelected,
+        id: product._id,
       }
       this.addProduct(productWithToppings)
     },

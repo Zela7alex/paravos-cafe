@@ -16,10 +16,12 @@ export default {
   },
   methods: {
     ...mapActions(['setCategoriesAction', 'setAllProductsAction']),
+    ...mapActions({ initializeCart: 'cart/initializeCart' }),
   },
   created() {
     this.setCategoriesAction()
     this.setAllProductsAction()
+    this.initializeCart(this.$store)
   },
 }
 </script>
