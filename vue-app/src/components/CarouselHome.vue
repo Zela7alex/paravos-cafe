@@ -34,11 +34,8 @@
 
           <div class="container">
             <div class="carousel-caption text-start">
-              <h1>Example headline.</h1>
-              <p>
-                Some representative placeholder content for the first slide of
-                the carousel.
-              </p>
+              <h1>Earn points for free food.</h1>
+              <p>Each time you order in store, earn points!</p>
               <p>
                 <a class="btn btn-lg btn-primary" href="#">Sign up today</a>
               </p>
@@ -55,10 +52,10 @@
 
           <div class="container">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
+              <h1>Bring in your friends.</h1>
               <p>
-                Some representative placeholder content for the second slide of
-                the carousel.
+                When you bring in a friend whose never tried our food, we'll
+                give you both a coffee on us.
               </p>
               <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
             </div>
@@ -74,7 +71,7 @@
 
           <div class="container">
             <div class="carousel-caption text-end">
-              <h1>One more for good measure.</h1>
+              <h1>Warm pastries made fresh with GF options!</h1>
               <p>
                 Some representative placeholder content for the third slide of
                 this carousel.
@@ -153,8 +150,9 @@ export default {}
 /* Carousel base class */
 .carousel {
   margin-bottom: 4rem;
+  z-index: 0;
 }
-/* Since positioning the image, we need to help out the caption */
+/* Since positioning the image, need to help out the caption */
 .carousel-caption {
   bottom: 3rem;
   z-index: 10;
@@ -163,6 +161,15 @@ export default {}
 /* Declare heights because of positioning of img element */
 .carousel-item {
   height: 40rem;
+}
+
+.btn {
+  background: rgb(8, 79, 8, 0.7);
+  border: 1px solid white;
+}
+.btn:hover {
+  background: rgb(8, 79, 8);
+  border: 2px solid rgb(11, 107, 25);
 }
 
 /* RESPONSIVE CSS

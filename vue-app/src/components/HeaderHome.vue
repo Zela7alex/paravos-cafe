@@ -1,8 +1,10 @@
 <template>
   <div>
+    <!----------------- Navbar collapse for smaller view-port ------------------>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
       <div class="container-fluid">
         <button
+          on:mouseover="toggleOpen"
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -13,14 +15,26 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+        <!----------------- Logo / Home page nav-link ------------------>
         <router-link :to="{ name: 'Home' }" class="home-link"
           ><img
             id="paravos-logo"
             src="../assets/media/images/Paravos_Cafe_logo.png"
             alt="Paravos Cafe logo"
         /></router-link>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
+        <!----------------- Nav-links ------------------>
+        <div
+          class="collapse navbar-collapse"
+          id="navbarCollapse"
+          :on-mouseleave="closeNav()"
+          :class="{ hideNav: isActive }"
+        >
           <ul class="navbar-nav mb-2 mb-md-0">
+            <li class="nav-item">
+              <router-link :to="{ name: 'Home' }">
+                <a class="nav-link home-link-2">Home</a>
+              </router-link>
+            </li>
             <li class="nav-item">
               <router-link :to="{ path: '/menu/all' }">
                 <a class="nav-link" aria-current="page">Menu</a></router-link
@@ -33,34 +47,57 @@
             </li>
             <li class="nav-item">
               <router-link :to="{ name: 'Our-Story' }"
-                ><a class="nav-link story">Our Story</a></router-link
+                ><a class="nav-link">Our Story</a></router-link
+              >
+            </li>
+            <!----------------- These Nav-links displaying at smaller view-port  ------------------>
+            <li class="nav-item">
+              <router-link
+                :to="{ name: 'Sign-In' }"
+                :class="{
+                  displayNone: noDisplay,
+                  'display-links': displayLinks,
+                }"
+                ><a class="nav-link">Sign In</a></router-link
               >
             </li>
             <li class="nav-item">
-              <router-link :to="{ name: 'Sign-In' }">
-                <a class="nav-link right-side sign-in" aria-current="page"
-                  >Sign In
-                </a></router-link
-              >
-            </li>
-            <li class="nav-item">
-              <router-link :to="{ name: 'Order' }"
-                ><a class="nav-link right-side order">Order</a></router-link
+              <router-link
+                :to="{ name: 'Order' }"
+                :class="{
+                  displayNone: noDisplay,
+                  'display-links': displayLinks,
+                }"
+                ><a class="nav-link">Order</a></router-link
               >
             </li>
           </ul>
         </div>
       </div>
+      <!----------------- Slogan and Logo name ------------------>
       <h2 id="slogan">Made Just for You.</h2>
       <div class="slogan-logo">
         <h1 id="logo-name">Paravos cafe</h1>
         <h2 id="slogan-1">Made Just for You.</h2>
       </div>
-      <router-link id="cart-router" :to="{ name: 'Cart' }"
-        ><CartCount id="cart-count" /><i
-          class="fa-solid fa-bag-shopping bag"
-        ></i
-      ></router-link>
+      <!----------------- Full screen nav items ------------------>
+      <div class="right-links">
+        <li class="nav-item sign-in">
+          <router-link :to="{ name: 'Sign-In' }">
+            <a class="nav-link" aria-current="page">Sign In </a></router-link
+          >
+        </li>
+        <li class="nav-item order">
+          <router-link :to="{ name: 'Order' }"
+            ><a class="nav-link">Order</a></router-link
+          >
+        </li>
+      </div>
+      <div id="cart">
+        <CartCount id="cart-count" />
+      </div>
+
+      <!----------------- Shopping Bag ------------------>
     </nav>
   </div>
 </template>
@@ -71,6 +108,13 @@ export default {
   components: {
     CartCount,
   },
+  data: () => {
+    return {
+      noDisplay: true,
+      displayLinks: true,
+      isActive: false,
+    }
+  },
   computed: {
     ...mapGetters({
       // Bringing in the count for amount of items in cart
@@ -78,10 +122,22 @@ export default {
       totalPrice: 'cart/totalPrice',
     }),
   },
+  methods: {
+    closeNav() {
+      setTimeout(() => {
+        this.isActive = true
+      }, 1000)
+    },
+  },
 }
 </script>
 
 <style scoped>
+/* :class being used with variable */
+.displayNone {
+  display: none;
+}
+
 .nav-scroller {
   z-index: 2;
   height: 2.75rem;
@@ -100,7 +156,7 @@ export default {
 }
 .navbar {
   background-color: rgb(7, 47, 38);
-  border-bottom: 5px solid rgba(13, 10, 10, 0.5);
+  box-shadow: -3px 2px 9px 1px #4d4a4a;
   z-index: 2;
 }
 
@@ -108,9 +164,10 @@ export default {
   padding: none;
   height: 4.5em;
   margin: 0;
-  width: 65%;
+  width: 45%;
 }
 
+/* NAV-LINKS styling */
 a,
 .nav-link {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
@@ -120,6 +177,22 @@ a,
   position: relative;
   overflow: hidden;
 }
+.right-links {
+  position: fixed;
+  right: 8%;
+  top: 1%;
+  display: flex;
+}
+
+.sign-in a {
+  padding-right: 2vw;
+  height: 49%;
+}
+
+.order a {
+  height: 49%;
+}
+
 a::after {
   content: '';
   position: absolute;
@@ -138,32 +211,21 @@ a:focus::after {
   transform: translate3d(0, 0, 0);
 }
 
-.right-side {
-  position: absolute;
-  left: 95%;
-}
-
-.sign-in {
-  position: fixed;
-  left: 100rem;
-  width: 5rem;
-}
-
-navbarCollapse {
-  width: 20%;
-}
-
-/* Logo's & slogan with responsiveness */
+/* LOGO'S & SLOGAN */
 .home-link {
-  width: 10vw;
+  max-width: 10vw;
 }
 
 .home-link::after {
   display: none;
 }
+.home-link-2 {
+  display: none;
+}
 
 #paravos-logo {
-  width: 100%;
+  max-width: 10vw;
+  max-height: 12vh;
   padding: 0px;
   text-align: center;
   margin: 0 auto;
@@ -174,10 +236,8 @@ navbarCollapse {
 #slogan {
   font-size: 1.5em;
   color: rgb(141, 127, 103);
-  margin: 0 auto;
-  padding-right: 25%;
   font-family: 'Times New Roman', Times, serif;
-  width: 60%;
+  z-index: 1;
 }
 .slogan-logo {
   display: none;
@@ -197,66 +257,23 @@ navbarCollapse {
   margin: 0 auto;
   font-family: 'Times New Roman', Times, serif;
 }
+/* cart checkout */
 
-.bag {
-  width: 3rem;
-  padding-top: 1rem;
-  font-size: 23px;
-  padding-right: 3rem;
-  cursor: pointer;
-  color: rgb(164, 157, 134);
+#cart {
+  position: fixed;
+  right: 1%;
 }
 
-.bag:hover {
-  color: rgb(227, 224, 216);
-}
 #cart-count {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 4rem;
+  height: 4rem;
   padding-top: 2px;
   text-align: center;
   font-size: 12px;
-  z-index: 1;
-  position: absolute;
-  bottom: 80%;
-  left: 35%;
-  background: rgb(187, 182, 154, 0.7);
   border-radius: 4px;
 }
-#cart-router {
-  z-index: 1;
-  text-decoration: none;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-}
-
-@media (max-width: 1440px) {
-  .right-side {
-    position: absolute;
-    left: 55rem;
-  }
-
-  .sign-in {
-    position: absolute;
-    left: 50rem;
-    width: 5rem;
-  }
-}
-
-@media (min-width: 1300px) {
-  .right-side {
-    position: absolute;
-    left: 45rem;
-  }
-
-  .sign-in {
-    position: absolute;
-    left: 40rem;
-    width: 5rem;
-  }
-}
-
+/* RESPONSIVE CSS
+-------------------------------------------------- */
 @media (max-width: 50em) {
   #paravos-logo {
     display: none;
@@ -282,6 +299,13 @@ navbarCollapse {
     display: inline-block;
     width: 100%;
   }
+  .right-links {
+    display: none;
+  }
+  .display-links {
+    display: inline-block;
+    width: 100%;
+  }
 
   .container-fluid {
     padding: none;
@@ -289,13 +313,21 @@ navbarCollapse {
     margin: 0;
     width: 20%;
   }
-  .story {
-    width: 7rem;
+  .home-link-2 {
+    display: inline-block;
+    width: 100%;
+  }
+  .home-link-2::after {
+    display: none;
   }
 
-  .right-side {
-    position: relative;
-    left: 5rem;
+  li {
+    background: rgba(179, 167, 150, 0.2);
+    border-radius: 3px;
+  }
+  a,
+  .nav-link {
+    color: rgb(246, 244, 241);
   }
 }
 
@@ -308,19 +340,6 @@ navbarCollapse {
     width: 30%;
     margin-left: 15%;
   }
-  .bag {
-    width: 10%;
-    margin-right: 5%;
-  }
-  .right-side {
-    position: relative;
-    right: rem;
-  }
-
-  /* .sign-in {
-    position: relative;
-    right: 0rem;
-  } */
 }
 
 @media (max-width: 540px) {
@@ -332,20 +351,6 @@ navbarCollapse {
     width: 40%;
     margin-left: 10%;
   }
-  .bag {
-    width: 10%;
-    margin-right: 5%;
-  }
-
-  .right-side {
-    position: relative;
-    left: 0rem;
-  }
-
-  /* .sign-in {
-    position: relative;
-    left: 0rem;
-  } */
 }
 
 @media (max-width: 280px) {
@@ -357,20 +362,6 @@ navbarCollapse {
     width: 40%;
     margin-left: 10%;
     font-size: 14px;
-  }
-  .bag {
-    width: 10%;
-    margin-right: 7%;
-  }
-
-  .right-side {
-    position: relative;
-    left: 0rem;
-  }
-
-  .sign-in {
-    position: relative;
-    left: 0rem;
   }
 }
 </style>

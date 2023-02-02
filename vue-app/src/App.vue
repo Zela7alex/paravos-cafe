@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <HeaderHome />
+  <div id="paravos">
+    <HeaderHome id="header" />
     <router-view />
+    <CookieConsent />
     <FooterHome />
   </div>
 </template>
@@ -9,10 +10,12 @@
 import { mapActions } from 'vuex'
 import HeaderHome from '@/components/HeaderHome.vue'
 import FooterHome from '@/components/FooterHome.vue'
+import CookieConsent from '@/components/CookieConsent.vue'
 export default {
   components: {
     HeaderHome,
     FooterHome,
+    CookieConsent,
   },
   methods: {
     ...mapActions(['setCategoriesAction', 'setAllProductsAction']),
@@ -34,7 +37,7 @@ export default {
   --background: rgb(245, 244, 241);
 }
 body {
-  box-sizing: none;
+  box-sizing: border-box;
   margin: 0;
   background: var(--background);
 }

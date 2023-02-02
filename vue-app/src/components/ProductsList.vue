@@ -1,5 +1,5 @@
 <template>
-  <div class="row mt-3">
+  <div class="row mt-3 full-page">
     <BannerMarketing class="banner" />
     <div class="col"><CategoriesList /></div>
     <div class="col-10">
@@ -88,6 +88,10 @@ p {
   margin-bottom: 2rem;
 }
 
+.full-page {
+  min-height: 100vh;
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -119,8 +123,8 @@ p {
 .banner {
   width: 100%;
   position: fixed;
-  z-index: 1;
-  top: 93px;
+  z-index: 2;
+  top: 88px;
 }
 .col-10 {
   width: 75%;
@@ -130,6 +134,8 @@ p {
   text-decoration: none;
 }
 
+/* RESPONSIVE CSS
+-------------------------------------------------- */
 @media (max-width: 700px) {
   /* Div holding product images, p tags and buttons*/
   .col-10 {

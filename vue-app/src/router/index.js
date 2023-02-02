@@ -8,6 +8,8 @@ import SignIn from '../views/SignIn.vue'
 import ProductsList from '../components/ProductsList.vue'
 import ProductSummary from '../views/ProductSummary.vue'
 import CartView from '../views/CartView.vue'
+import CheckoutProducts from '../components/CheckoutProducts'
+import CookieConsentPage from '../views/CookieConsentPage.vue'
 
 Vue.use(VueRouter)
 
@@ -57,6 +59,16 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: CartView,
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: CheckoutProducts,
+  },
+  {
+    path: '/cookie-consent',
+    name: 'Cookie-Consent',
+    component: CookieConsentPage,
   },
 ]
 

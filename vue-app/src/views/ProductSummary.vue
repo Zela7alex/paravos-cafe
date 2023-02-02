@@ -37,7 +37,7 @@
               <div class="checkbox-product-div">
                 <input
                   type="checkbox"
-                  @click="toppingToggle(p.toppings[i], value), (checked = true)"
+                  @click="toppingToggle(p.toppings[i], value)"
                 />
                 <p id="each-product">{{ key }}</p>
               </div>
@@ -49,6 +49,7 @@
             type="text"
             id="comments"
             name="comments"
+            v-model="commentsAdded"
             rows="4"
             cols="50"
           ></textarea>
@@ -79,6 +80,7 @@ export default {
     return {
       urlSlug: window.location.pathname.slice(22, 44),
       toppingsSelected: [],
+      commentsAdded: '',
     }
   },
   methods: {
@@ -95,6 +97,7 @@ export default {
         name: product.name,
         price: product.price,
         toppings: this.toppingsSelected,
+        comments: this.commentsAdded,
         id: product._id,
       }
       this.addProduct(productWithToppings)
@@ -156,8 +159,8 @@ h3 {
 .banner {
   width: 100%;
   position: fixed;
-  z-index: 1;
-  top: 93px;
+  z-index: 2;
+  top: 88px;
 }
 
 input {

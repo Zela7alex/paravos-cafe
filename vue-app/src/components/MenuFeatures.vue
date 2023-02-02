@@ -77,6 +77,11 @@ export default {}
   background-color: rgb(1, 87, 61);
   color: rgb(209, 202, 179);
 }
+
+img:hover {
+  width: 180px;
+  height: 180px;
+}
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 

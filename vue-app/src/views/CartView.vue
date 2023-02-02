@@ -10,6 +10,7 @@
             <th>Product</th>
             <th>Toppings</th>
             <th>Quantity</th>
+            <th>Comments</th>
             <th>Actions</th>
             <th>Price</th>
             <th>Subtotal</th>
@@ -25,21 +26,22 @@
               <p v-for="(t, i) in c.product.toppings" :key="i">{{ t }}</p>
             </td>
             <td>{{ c.quantity }}</td>
+            <td>{{ c.product.comments }}</td>
             <td>
               <button
-                class="btn small btn-primary mx-1"
+                class="btn small btn-primary action-btn"
                 @click="handleAddProduct(c.product)"
               >
                 +
               </button>
               <button
-                class="btn small btn-primary mx-1"
+                class="btn small btn-primary mx-1 action-btn"
                 @click="handleSubtractProduct(c.product.id)"
               >
                 -
               </button>
               <button
-                class="btn small btn-primary mx-1"
+                class="btn small btn-primary mx-1 action-btn clear-btn"
                 @click="handleRemoveProduct(c.product.id)"
               >
                 remove
@@ -58,12 +60,14 @@
           <tr>
             <td colspan="5">
               <button
-                class="btn btn-danger float-left"
+                class="btn btn-primary float-left clear-btn"
                 @click="handleClearCart"
               >
                 Clear Cart
               </button>
-              <router-link to="/checkout" class="btn btn-primary float-right"
+              <router-link
+                to="/checkout"
+                class="btn btn-primary float-right checkout-btn"
                 >Checkout</router-link
               >
             </td>
@@ -116,7 +120,7 @@ export default {
 .row {
   margin: 0 auto;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   margin-top: 10rem;
   margin-bottom: 2rem;
 }
@@ -134,11 +138,34 @@ export default {
 .banner {
   width: 100%;
   position: fixed;
-  z-index: 1;
-  top: 93px;
+  z-index: 2;
+  top: 88px;
 }
 .col-toppings {
   display: flex;
   flex-direction: column;
+}
+.checkout-btn {
+  background-color: rgb(135, 179, 114);
+  border: 1.4px solid rgba(46, 93, 37, 0.9);
+  margin-left: 1rem;
+}
+.clear-btn {
+  background-color: rgb(183, 190, 180);
+  border: 1.4px solid rgba(46, 93, 37, 0.9);
+}
+.action-btn {
+  background: var(--light-green);
+}
+
+.btn:hover {
+  background-color: rgb(155, 171, 154);
+  outline: none;
+}
+.btn:focus {
+  outline: none;
+}
+.clear-btn:hover {
+  background: rgb(140, 78, 78);
 }
 </style>
