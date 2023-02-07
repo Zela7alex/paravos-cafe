@@ -49,6 +49,7 @@ export default {
 .nav-item:hover {
   background: rgba(223, 227, 215, 0.8);
   border-radius: 5%;
+  transition-delay: 0.1s;
 }
 
 @media (max-width: 700px) {

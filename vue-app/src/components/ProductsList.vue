@@ -1,10 +1,18 @@
 <template>
   <div class="row mt-3 full-page">
     <BannerMarketing class="banner" />
+    <CateringsForm data-aos="flip-left" data-aos-delay="2000" />
     <div class="col"><CategoriesList /></div>
     <div class="col-10">
       <div class="row products">
-        <div class="col-3 mt-3" v-for="(p, i) in products" :key="i">
+        <div
+          class="col-3 mt-3"
+          v-for="(p, i) in products"
+          :key="i"
+          data-aos="fade-up"
+          data-aos-delay="300"
+          data-aos-easing="ease-in"
+        >
           <router-link
             :to="'/menu/product-summary/' + p.slug"
             class="product-sum"
@@ -34,9 +42,10 @@
 import { mapActions, mapState } from 'vuex'
 import CategoriesList from '../components/CategoriesList'
 import BannerMarketing from '../components/BannerMarketing'
+import CateringsForm from '../components/CateringsForm'
 
 export default {
-  components: { CategoriesList, BannerMarketing },
+  components: { CategoriesList, BannerMarketing, CateringsForm },
   computed: {
     ...mapState(['products']),
   },

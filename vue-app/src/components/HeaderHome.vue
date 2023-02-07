@@ -177,6 +177,10 @@ a,
   position: relative;
   overflow: hidden;
 }
+a:hover {
+  color: rgb(214, 212, 201);
+  transition-delay: 0.2s;
+}
 .right-links {
   position: fixed;
   right: 8%;
@@ -204,6 +208,7 @@ a::after {
   opacity: 0;
   transition: opacity 300ms, transform 300ms;
   transform: translate3d(-100%, 0, 0);
+  transition-delay: 0.2s;
 }
 a:hover::after,
 a:focus::after {

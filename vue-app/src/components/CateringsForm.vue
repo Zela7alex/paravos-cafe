@@ -42,7 +42,7 @@ export default {}
 input[type='text'],
 select {
   width: 100%;
-  padding: 12px 20px;
+  padding: 10px 15px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -52,9 +52,9 @@ select {
 
 input[type='submit'] {
   width: 100%;
-  background-color: #4caf50;
+  background-color: #437545;
   color: white;
-  padding: 14px 20px;
+  padding: 10px 15px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
@@ -66,10 +66,17 @@ input[type='submit']:hover {
 }
 
 div {
-  width: 40%;
-  height: 20%;
+  width: 25%;
+  height: 57%;
+  border: 1px solid green;
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  position: absolute;
+  top: 64%;
+  left: 2%;
+}
+p {
+  color: var(--dark-green);
 }
 </style>

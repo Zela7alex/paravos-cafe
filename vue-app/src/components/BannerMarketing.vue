@@ -1,5 +1,5 @@
 <template>
-  <div class="banner">
+  <div class="banner" data-aos="fade-right" data-aos-easing="ease-in">
     <h5>{{ currentPromo }}</h5>
     <router-link :to="currentLink">
       <a>{{ currentLinkName }}</a>

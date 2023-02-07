@@ -3,7 +3,12 @@
     <hr class="featurette-divider" />
 
     <div class="row featurette" id="cup">
-      <div class="col-md-7">
+      <div
+        class="col-md-7"
+        data-aos="fade-right"
+        data-aos-delay="700"
+        data-aos-easing="ease-in"
+      >
         <h2 class="featurette-heading fw-normal lh-1">
           Live Music, Poetry, Art Nights and More!
           <span class="text-muted">It’ll blow your mind.</span>
@@ -14,7 +19,12 @@
           stage, sign up below for our performance nights!
         </p>
       </div>
-      <div class="col-md-5">
+      <div
+        class="col-md-5"
+        data-aos="zoom-out-left"
+        data-aos-delay="400"
+        data-aos-easing="ease-in"
+      >
         <img
           src="../assets/media/images/marketing/guy-playing-guitar.jpeg"
           alt="Guy playing guitar at paravos cafe"
@@ -26,7 +36,13 @@
 
     <hr class="featurette-divider" />
 
-    <div class="row featurette" id="live-performances">
+    <div
+      class="row featurette"
+      id="live-performances"
+      data-aos="fade-left"
+      data-aos-delay="500"
+      data-aos-easing="ease-in"
+    >
       <div class="col-md-7 order-md-2">
         <h2 class="featurette-heading fw-normal lh-1">
           We roast the finest coffee beans in house.
@@ -43,7 +59,7 @@
       <div class="col-md-5 order-md-1">
         <img
           src="../assets/media/images/marketing/coffee-plants.jpeg"
-          alt="Guy playing guitar at paravos cafe"
+          alt="Coffee with plants"
           width="400"
           height="500"
         />
@@ -53,20 +69,31 @@
     <hr class="featurette-divider" />
 
     <div class="row featurette" id="paravos-jobs">
-      <div class="col-md-7">
+      <div
+        class="col-md-7"
+        data-aos="fade-right"
+        data-aos-delay="500"
+        data-aos-easing="ease-in"
+      >
         <h2 class="featurette-heading fw-normal lh-1">
           Need a place to focus?
           <span class="text-muted">We're the place.</span>
         </h2>
         <p class="lead">
-          We want you to feel at home. This coffee shop was designed with
-          tranquility in mind. From the lush green plants and green house style
+          This coffee shop was designed with tranquility in mind. From the lush
+          green plants and green house design. Paravos is a place to harness
+          your creativity while also having delicious food.
         </p>
       </div>
-      <div class="col-md-5">
+      <div
+        class="col-md-5"
+        data-aos="zoom-out-left"
+        data-aos-delay="400"
+        data-aos-easing="ease-in"
+      >
         <img
           src="../assets/media/images/marketing/woman-writing.jpeg"
-          alt="Guy playing guitar at paravos cafe"
+          alt="Woman writing in journal"
           width="400"
           height="500"
         />
@@ -98,6 +125,13 @@ export default {
 /* rtl:begin:remove */
 .featurette-heading {
   letter-spacing: -0.05rem;
+}
+.fade-in {
+  opacity: 0;
+  transition: opacity 250ms ease-in;
+}
+.fade-in.appear {
+  opacity: 1;
 }
 
 @media (min-width: 40em) {

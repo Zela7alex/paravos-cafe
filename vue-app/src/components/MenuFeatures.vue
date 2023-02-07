@@ -81,6 +81,7 @@ export default {}
 img:hover {
   width: 180px;
   height: 180px;
+  transition-delay: 0.2s;
 }
 /* RESPONSIVE CSS
 -------------------------------------------------- */

@@ -170,6 +170,7 @@ export default {}
 .btn:hover {
   background: rgb(8, 79, 8);
   border: 2px solid rgb(11, 107, 25);
+  transition-delay: 0.2s;
 }
 
 /* RESPONSIVE CSS

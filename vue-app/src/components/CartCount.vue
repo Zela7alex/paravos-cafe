@@ -47,6 +47,7 @@ export default {
 
 .bag:hover {
   color: rgb(227, 224, 216);
+  transition-delay: 0.1s;
 }
 #price {
   margin-top: 5%;
