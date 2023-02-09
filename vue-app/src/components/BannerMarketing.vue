@@ -34,6 +34,7 @@ export default {
     }
   },
   methods: {
+    // Switching through each promo in banner over 3 secs
     promos() {
       let i = Math.floor(Math.random() * this.promotions.length)
       this.currentPromo = this.promotions[i].promo
@@ -61,10 +62,13 @@ export default {
   text-align: center;
   justify-content: center;
 }
+h5 {
+  margin-left: 8%;
+}
 a {
-  width: 18%;
+  width: 16%;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  padding-right: 4%;
+  padding-right: 3%;
   color: rgb(77, 110, 51);
   font-weight: bold;
 }

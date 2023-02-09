@@ -6,6 +6,7 @@
           <li class="nav-item" id="nav-item">
             <router-link class="nav-link" to="/menu/all">All</router-link>
           </li>
+          <!-- Looping over categories list from database routing to the categories slug on selection-->
           <li v-for="(cat, i) in categories" :key="i" class="nav-item">
             <router-link class="nav-link" :to="'/menu/' + cat.slug">{{
               cat.name
@@ -46,10 +47,13 @@ export default {
 .nav-link:hover {
   color: var(--light-green);
 }
+.nav-item {
+  transition-delay: 0.1s;
+  transition-duration: 0.1s;
+}
 .nav-item:hover {
   background: rgba(223, 227, 215, 0.8);
   border-radius: 5%;
-  transition-delay: 0.1s;
 }
 
 @media (max-width: 700px) {

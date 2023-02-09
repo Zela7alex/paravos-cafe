@@ -8,7 +8,10 @@ const OrderSchema = mongoose.Schema({
   email: {
     type: String,
   },
-  address: {
+  phone: {
+    type: String,
+  },
+  orderDate: {
     type: String,
   },
   cart: {

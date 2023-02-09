@@ -1,7 +1,7 @@
 <template>
   <div>
     <hr class="featurette-divider" />
-
+    <!--******** First Marketing Feature Start ******-->
     <div class="row featurette" id="cup">
       <div
         class="col-md-7"
@@ -35,7 +35,7 @@
     </div>
 
     <hr class="featurette-divider" />
-
+    <!--******* Second Marketing Feature Start ******-->
     <div
       class="row featurette"
       id="live-performances"
@@ -67,7 +67,7 @@
     </div>
 
     <hr class="featurette-divider" />
-
+    <!--****** Third Marketing Feature Start *******-->
     <div class="row featurette" id="paravos-jobs">
       <div
         class="col-md-7"

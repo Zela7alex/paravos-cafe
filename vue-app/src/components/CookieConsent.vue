@@ -1,6 +1,12 @@
 <template>
   <div>
-    <div id="cookie-consent">
+    <div
+      id="cookie-consent"
+      :class="{ displayNone: cookiesBtn }"
+      data-aos="fade-up"
+      data-aos-delay="1000"
+      data-aos-easing="ease-in"
+    >
       <p>
         We at ParavosCafe.com use cookies to give you the best experience on our
         site. By continuing to use our website, you consent to our use of
@@ -11,17 +17,32 @@
           ></span
         >.
       </p>
-      <button id="accept-btn">Accept</button>
-      <button>Decline</button>
+      <button id="accept-btn" @click="$emit('hideCookie')">Accept</button>
+      <button @click="$emit('hideCookie')">Decline</button>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      cookiesBtn: false,
+    }
+  },
+  methods: {
+    hideCookie() {
+      this.cookiesBtn = true
+      this.cookiesBtn = false
+    },
+  },
+}
 </script>
 
 <style scoped>
+.displayNone {
+  display: none;
+}
 #cookie-consent {
   width: 100%;
   height: 8%;
@@ -47,9 +68,12 @@ button {
   color: beige;
   background: rgb(141, 187, 141);
   border: none;
+  transition-delay: 0.3s;
+  transition-duration: 0.5s;
 }
 button:hover {
   background: rgb(163, 175, 163);
+  transition-timing-function: ease-out;
 }
 #accept-btn {
   margin-right: 6%;

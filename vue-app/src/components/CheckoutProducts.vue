@@ -1,6 +1,7 @@
 <template>
   <div class="column">
     <BannerMarketing class="banner" />
+    <!--********* Left Div Cart Summary *********-->
     <div class="product-summary">
       <div class="container">
         <div class="title-quote">
@@ -37,25 +38,29 @@
         </table>
       </div>
     </div>
+    <!--****** Form for customer information start ***-->
     <div class="row">
       <div class="col-12">
         <div class="form-group m-2">
-          <label for="">Name</label>
-          <input type="text" class="form-control" />
+          <label for="name">Name</label>
+          <input type="text" class="form-control" v-model="order.name" />
         </div>
         <div class="form-group m-2">
-          <label for="">Email</label>
-          <input type="text" class="form-control" />
+          <label for="email">Email</label>
+          <input type="text" class="form-control" v-model="order.email" />
         </div>
         <div class="form-group m-2">
-          <label for="">Phone Number</label>
-          <input type="text" class="form-control" />
+          <label for="phone">Phone Number</label>
+          <input type="text" class="form-control" v-model="order.phone" />
         </div>
-        <CalendarCheckout />
+        <!-- Date selected is being received through an $emit from Calendar Checkout-->
+        <CalendarCheckout @dateSelected="datePicked" />
       </div>
       <div class="col-12 text-center">
         <router-link class="btn btn-secondary m-1" to="/cart">Back</router-link>
-        <button class="btn btn-primary m1 checkout-btn">Place Order</button>
+        <button class="btn btn-primary m1 checkout-btn" @click="submitOrder">
+          Place Order
+        </button>
       </div>
     </div>
   </div>
@@ -64,10 +69,20 @@
 <script>
 import CalendarCheckout from './CalendarCheckout.vue'
 import BannerMarketing from '../components/BannerMarketing'
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   components: { CalendarCheckout, BannerMarketing },
-  methods: {},
+  data() {
+    return {
+      order: {
+        name: 'John',
+        email: 'john@gmail.com',
+        phone: '352-272-2817',
+        orderDate: '',
+      },
+    }
+  },
+
   computed: {
     ...mapState({ cart: (state) => state.cart.cart }),
     ...mapGetters({
@@ -75,6 +90,35 @@ export default {
       itemCount: 'cart/itemCount',
       totalPrice: 'cart/totalPrice',
     }),
+  },
+
+  methods: {
+    ...mapActions({
+      storeOrder: 'orders/storeOrderAction',
+      clearCartData: 'cart/clearCartData',
+    }),
+    // Recieving date value from Calendar component and assigning it to orderDate
+    datePicked(value) {
+      this.orderDate = value
+    },
+    // submitOrder() made as async in casde storeOrder() does not go through
+    async submitOrder() {
+      const order = new FormData()
+
+      order.append('name', this.order.name)
+      order.append('email', this.order.email)
+      order.append('phone', this.order.phone)
+      order.append('phone', this.order.orderDate)
+      order.append('cart', JSON.stringify(this.cart))
+      order.append('total', this.totalPrice)
+
+      // Sending order through storeOrderAction with appended data to Order.js axios post
+      await this.storeOrder(order)
+      // Clearing cart data after order submission
+      this.clearCartData()
+      // Sending customer to thank you page
+      this.$router.push('/thank-you')
+    },
   },
 }
 </script>

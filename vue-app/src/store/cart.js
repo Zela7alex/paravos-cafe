@@ -15,7 +15,7 @@ export default {
       ),
   },
   mutations: {
-    // Adding products to cart
+    //^ Adding products to cart
     addProduct(state, product) {
       const cartItem = state.cart.find(
         (cartItem) => cartItem.product.id == product.id
@@ -27,7 +27,7 @@ export default {
       }
     },
 
-    // Subtrcting products from cart
+    //^ Subtracting products from cart
     subtractProduct(state, productById) {
       const cartItem = state.cart.find(
         (cartItem) => cartItem.product.id == productById
@@ -46,7 +46,7 @@ export default {
       }
     },
 
-    // Removing products from cart
+    //^ Removing products from cart
     removeProduct(state, productById) {
       //finding the product selected from cart
       const index = state.cart.findIndex(
@@ -63,18 +63,18 @@ export default {
     },
   },
   actions: {
-    // Retrieving cart data from localStorage
+    //^ Retrieving cart data from localStorage
     loadCartData(context) {
       const data = localStorage.getItem('cart')
       if (data != null) {
         context.commit('setCartData', JSON.parse(data))
       }
     },
-    // Storing loaded data into cart
+    //^ Storing loaded data into cart
     storeCartData(context) {
       localStorage.setItem('cart', JSON.stringify(context.state.cart))
     },
-    // Getting cart content when application starts
+    //^ Getting cart content when application starts
     initializeCart(context, store) {
       context.dispatch('loadCartData')
       store.watch(
@@ -83,7 +83,7 @@ export default {
         { deep: true }
       )
     },
-    // Clearing cart data
+    //^ Clearing cart data
     clearCartData(context) {
       context.commit('setCartData', [])
     },

@@ -2,7 +2,10 @@
   <div id="paravos">
     <HeaderHome id="header" />
     <router-view />
-    <CookieConsent />
+    <CookieConsent
+      @hideCookie="hideCookieBanner()"
+      :class="{ displayNone: hide }"
+    />
     <FooterHome />
   </div>
 </template>
@@ -17,9 +20,17 @@ export default {
     FooterHome,
     CookieConsent,
   },
+  data() {
+    return {
+      hide: false,
+    }
+  },
   methods: {
     ...mapActions(['setCategoriesAction', 'setAllProductsAction']),
     ...mapActions({ initializeCart: 'cart/initializeCart' }),
+    hideCookieBanner() {
+      this.hide = true
+    },
   },
   created() {
     this.setCategoriesAction()
@@ -51,5 +62,9 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+.displayNone {
+  display: none;
 }
 </style>

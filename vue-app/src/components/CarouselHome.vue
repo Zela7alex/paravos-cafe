@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <!--************* Carousel Buttons ***********-->
       <div class="carousel-indicators">
         <button
           type="button"
@@ -23,7 +24,9 @@
           aria-label="Slide 3"
         ></button>
       </div>
+      <!------------Carousel Inner Contents ------->
       <div class="carousel-inner">
+        <!--*********** First Image **************-->
         <div class="carousel-item active">
           <img
             src="../assets/media/images/coffee_shop.jpeg"
@@ -42,6 +45,7 @@
             </div>
           </div>
         </div>
+        <!--************* Second Image **************-->
         <div class="carousel-item">
           <img
             src="../assets/media/images/coffee_friends.jpeg"
@@ -61,6 +65,7 @@
             </div>
           </div>
         </div>
+        <!--************* Third Image **************-->
         <div class="carousel-item">
           <img
             src="../assets/media/images/baked_goods.jpeg"
@@ -166,6 +171,8 @@ export default {}
 .btn {
   background: rgb(8, 79, 8, 0.7);
   border: 1px solid white;
+  transition-delay: 0.3s;
+  transition-duration: 0.5s;
 }
 .btn:hover {
   background: rgb(8, 79, 8);

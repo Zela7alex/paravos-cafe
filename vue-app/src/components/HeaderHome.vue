@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!----------------- Navbar collapse for smaller view-port ------------------>
+    <!--********* Navbar collapse for smaller view-port *******-->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
       <div class="container-fluid">
         <button
@@ -15,14 +15,14 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <!----------------- Logo / Home page nav-link ------------------>
+        <!--******* Logo / Home page nav-link ******-->
         <router-link :to="{ name: 'Home' }" class="home-link"
           ><img
             id="paravos-logo"
             src="../assets/media/images/Paravos_Cafe_logo.png"
             alt="Paravos Cafe logo"
         /></router-link>
-        <!----------------- Nav-links ------------------>
+        <!--*********** Nav-links ************-->
         <div
           class="collapse navbar-collapse"
           id="navbarCollapse"
@@ -50,7 +50,7 @@
                 ><a class="nav-link">Our Story</a></router-link
               >
             </li>
-            <!----------------- These Nav-links displaying at smaller view-port  ------------------>
+            <!--********* These Nav-links displaying at smaller view-port  **********-->
             <li class="nav-item">
               <router-link
                 :to="{ name: 'Sign-In' }"
@@ -74,13 +74,13 @@
           </ul>
         </div>
       </div>
-      <!----------------- Slogan and Logo name ------------------>
+      <!--********** Slogan and Logo name ***********-->
       <h2 id="slogan">Made Just for You.</h2>
       <div class="slogan-logo">
         <h1 id="logo-name">Paravos cafe</h1>
         <h2 id="slogan-1">Made Just for You.</h2>
       </div>
-      <!----------------- Full screen nav items ------------------>
+      <!--*********** Full screen nav items *********-->
       <div class="right-links">
         <li class="nav-item sign-in">
           <router-link :to="{ name: 'Sign-In' }">
@@ -93,11 +93,10 @@
           >
         </li>
       </div>
+      <!--************* Shopping Bag **************-->
       <div id="cart">
         <CartCount id="cart-count" />
       </div>
-
-      <!----------------- Shopping Bag ------------------>
     </nav>
   </div>
 </template>
@@ -176,10 +175,11 @@ a,
   text-decoration: none;
   position: relative;
   overflow: hidden;
+  transition-delay: 0.2s;
+  transition-duration: 0.3s;
 }
 a:hover {
   color: rgb(214, 212, 201);
-  transition-delay: 0.2s;
 }
 .right-links {
   position: fixed;

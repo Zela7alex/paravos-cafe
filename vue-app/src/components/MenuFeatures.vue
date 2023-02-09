@@ -2,6 +2,7 @@
   <div class="container-marketing">
     <div class="marketing">
       <div class="row">
+        <!--******** First Menu Feature ********-->
         <div class="col-lg-4">
           <img
             src="../assets/media/images/products/breakfast_box.jpeg"
@@ -17,7 +18,7 @@
           </p>
           <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
         </div>
-        <!-- /.col-lg-4 -->
+        <!--******** Second Menu Feature ********-->
         <div class="col-lg-4">
           <img
             src="../assets/media/images/products/lunch_sandwich.jpeg"
@@ -30,7 +31,7 @@
           <p>Need a quick & tasty lunch? We've got you covered.</p>
           <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
         </div>
-        <!-- /.col-lg-4 -->
+        <!--******** Third Menu Feature ********-->
         <div class="col-lg-4">
           <img
             src="../assets/media/images/products/pastelitos.jpeg"
@@ -46,7 +47,6 @@
           </p>
           <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
         </div>
-        <!-- /.col-lg-4 -->
       </div>
       <!-- /.row -->
     </div>
@@ -77,11 +77,14 @@ export default {}
   background-color: rgb(1, 87, 61);
   color: rgb(209, 202, 179);
 }
+img {
+  transition-delay: 0.3s;
+  transition-duration: 0.3s;
+}
 
 img:hover {
   width: 180px;
   height: 180px;
-  transition-delay: 0.2s;
 }
 /* RESPONSIVE CSS
 -------------------------------------------------- */

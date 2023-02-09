@@ -5,7 +5,7 @@
         <label class="block text-gray-600 text-sm font-bold mb-2" for="date"
           >Select Date & Time for your order</label
         >
-        <!--- Date piker start-->
+        <!--***** Date picker start ******-->
         <div class="flex w-full">
           <DatePicker
             v-model="date"
@@ -21,10 +21,10 @@
                 v-on="inputEvents"
               /> </template
           ></DatePicker>
+          <!--***** Clear date button *******-->
           <button
             type="button"
             class="text-white font-bold py-1 px-4 rounded-r user-select-none focus:outline-none clear-btn"
-            :class="blue"
             :disabled="!date"
             @click="date = null"
           >
@@ -63,7 +63,10 @@ export default {
     },
   },
   methods: {},
-  mounted: function () {},
+  updated() {
+    // Sending date selected from calendar to CheckoutProducts component
+    this.$emit('dateSelected', this.date)
+  },
 }
 </script>
 

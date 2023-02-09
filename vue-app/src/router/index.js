@@ -9,6 +9,7 @@ import ProductsList from '../components/ProductsList.vue'
 import ProductSummary from '../views/ProductSummary.vue'
 import CartView from '../views/CartView.vue'
 import CheckoutProducts from '../components/CheckoutProducts'
+import ThankYou from '../components/ThankYou'
 import CookieConsentPage from '../views/CookieConsentPage.vue'
 
 Vue.use(VueRouter)
@@ -64,6 +65,11 @@ const routes = [
     path: '/checkout',
     name: 'Checkout',
     component: CheckoutProducts,
+  },
+  {
+    path: '/thank-you',
+    name: 'Thank-You',
+    component: ThankYou,
   },
   {
     path: '/cookie-consent',

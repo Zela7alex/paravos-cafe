@@ -27,7 +27,7 @@
         <div class="checkbox-div">
           <div id="checkboxes" v-for="(toppings, i) in p.toppings" :key="i">
             <label id="type-topping">{{ Object.keys(toppings)[0] }}</label>
-            <!-------Looping over each object in toppings array---------->
+            <!-------Looping over each object in toppings array by type of toppings---------->
             <div
               class="all-products"
               id="pruduct-names"
