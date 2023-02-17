@@ -29,7 +29,7 @@
         <!--*********** First Image **************-->
         <div class="carousel-item active">
           <img
-            src="../assets/media/images/coffee_shop.jpeg"
+            src="../assets/media/images/marketing/coffee_shop.jpeg"
             class="bd-placeholder-img"
             width="100%"
             height="100%"
@@ -48,7 +48,7 @@
         <!--************* Second Image **************-->
         <div class="carousel-item">
           <img
-            src="../assets/media/images/coffee_friends.jpeg"
+            src="../assets/media/images/marketing/coffee_friends.jpeg"
             class="bd-placeholder-img"
             width="100%"
             height="100%"
@@ -68,7 +68,7 @@
         <!--************* Third Image **************-->
         <div class="carousel-item">
           <img
-            src="../assets/media/images/baked_goods.jpeg"
+            src="../assets/media/images/marketing/baked_goods.jpeg"
             class="bd-placeholder-img"
             width="100%"
             height="100%"

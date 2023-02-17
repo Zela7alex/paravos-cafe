@@ -1,14 +1,13 @@
 <template>
   <div>
     <div class="float-right">
-      <span v-if="itemCount > 0">
+      <span>
         <p id="item-count">{{ itemCount }}</p>
         <router-link :to="{ name: 'Cart' }"
           ><i class="fa-solid fa-bag-shopping bag"></i
         ></router-link>
-        <p id="price">{{ totalPrice | currency }}</p>
+        <p id="price" v-if="itemCount > 0">{{ totalPrice | currency }}</p>
       </span>
-      <span v-else>0</span>
     </div>
   </div>
 </template>

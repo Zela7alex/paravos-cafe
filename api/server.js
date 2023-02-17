@@ -13,6 +13,11 @@ mongoose.set('strictQuery', true);
 const app = express()
 app.use(cors())
 
+// Formidable used to parse incoming order to db
+//^ --- Formidable Middleware --- 
+app.use(formidableMiddleware())
+
+
 //^ --- Set Routes ----
 const pages = require('./routes/pages-routes.js')
 const categories = require('./routes/categories-routes')
@@ -33,9 +38,6 @@ mongoose.connect(config.database, {
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', () => console.log('connected to MongoDB'))
-
-//^ --- Formidable Middleware ---
-app.use(formidableMiddleware())
 
 //^ --- Set public folder ---
 app.use(express.static(path.join(__dirname, 'public')))

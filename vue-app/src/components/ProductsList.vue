@@ -1,37 +1,73 @@
 <template>
-  <div class="row mt-3 full-page">
-    <BannerMarketing class="banner" />
-    <CateringsForm data-aos="flip-left" data-aos-delay="2000" />
-    <div class="col"><CategoriesList /></div>
-    <div class="col-10">
-      <div class="row products">
-        <div
-          class="col-3 mt-3"
-          v-for="(p, i) in products"
-          :key="i"
-          data-aos="fade-up"
-          data-aos-delay="300"
-          data-aos-easing="ease-in"
-        >
-          <router-link
-            :to="'/menu/product-summary/' + p.slug"
-            class="product-sum"
+  <div :class="{ reverseBody: closeVid }">
+    <!--************************* Roasts Video **************************-->
+    <div>
+      <video
+        data-aos="zoom-in"
+        data-aos-delay="1000"
+        width="80%"
+        height="auto"
+        autoplay
+        loop
+        id="coffee-beans-video"
+        v-if="this.$route.params.category == 'roasts'"
+        :class="{ noDisplay: closeVid }"
+      >
+        <source
+          src="../assets/media/videos/coffee-beans-video.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div
+        id="close-video"
+        data-aos="zoom-in"
+        data-aos-delay="1600"
+        :class="{ noDisplay: closeVid }"
+        @click="closeVideo()"
+      >
+        <p id="close">x</p>
+      </div>
+    </div>
+    <!--*************************************************************-->
+    <div class="row mt-3 full-page">
+      <BannerMarketing class="banner" :class="{ noDisplay: roastsSelected }" />
+      <CateringsForm
+        :class="{ noDisplay: roastsSelected }"
+        data-aos="flip-left"
+        data-aos-delay="2000"
+      />
+      <div class="col"><CategoriesList /></div>
+      <!--****************** Menu Items *******************************-->
+      <div class="col-10">
+        <div class="row products">
+          <div
+            class="col-3 mt-3"
+            v-for="(p, i) in products"
+            :key="i"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            data-aos-easing="ease-in"
           >
-            <div>
-              <img
-                :src="require(`../assets/media/images/products/${p.image}`)"
-                class="img-fluid"
-              />
-            </div>
-            <h3>
-              {{ p.name }}
-            </h3>
-            <p>{{ p.description }}</p>
-            <div class="price-cart">
-              <p>{{ p.price | currency }}</p>
-              <p id="cal">- {{ p.calories }} cal</p>
-            </div></router-link
-          >
+            <router-link
+              :to="'/menu/product-summary/' + p.slug"
+              class="product-sum"
+            >
+              <div>
+                <img
+                  :src="require(`../assets/media/images/products/${p.image}`)"
+                  class="img-fluid"
+                />
+              </div>
+              <h3>
+                {{ p.name }}
+              </h3>
+              <p>{{ p.description }}</p>
+              <div class="price-cart">
+                <p>{{ p.price | currency }}</p>
+                <p id="cal">- {{ p.calories }} cal</p>
+              </div></router-link
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -46,30 +82,53 @@ import CateringsForm from '../components/CateringsForm'
 
 export default {
   components: { CategoriesList, BannerMarketing, CateringsForm },
+  data() {
+    return {
+      roastsWindow: document.body.style,
+      roastsSelected: false,
+      closeVid: false,
+    }
+  },
   computed: {
-    ...mapState(['products']),
+    ...mapState(['products'], ['categories']),
   },
   methods: {
     ...mapActions(['setProductsByCatAction']),
+    closeVideo() {
+      this.roastsSelected = false
+      this.closeVid = true
+    },
   },
   created() {
     // When component is created, route will redirect based on category selected and get products based on cat as directed in action >>
     const category = this.$route.params.category
     this.setProductsByCatAction(category)
+    this.roastsSelected = true
+    console.log(window)
   },
   beforeRouteUpdate(to, from, next) {
     // This will allow $route to actually update without needing to refresh the page after the action to fetch products based on category selected, has been called in created()
+    this.roastsSelected = true
     const category = to.params.category
     this.setProductsByCatAction(category)
     next()
   },
-  data() {
-    return {}
+  updated() {
+    const category = this.$route.params.category
+    if (category == 'roasts') {
+      this.roastsSelected = true
+      this.roastsWindow.transition = 'background-color 0.5s ease-in-out'
+      this.roastsWindow.backgroundColor = 'rgba(0, 0, 0, 0.6)'
+    } else {
+      document.body.style.backgroundColor = 'rgb(245, 244, 241)'
+      this.roastsSelected = false
+    }
   },
 }
 </script>
 
 <style scoped>
+/* Product Images */
 img {
   width: 200px;
   height: 200px;
@@ -141,6 +200,38 @@ p {
 /* Link to product summary */
 .product-sum {
   text-decoration: none;
+}
+
+/* Roasts video */
+#coffee-beans-video {
+  z-index: 2;
+  margin: 0 auto;
+  position: fixed;
+  top: 28vh;
+  left: 10vw;
+}
+#close-video {
+  width: 20px;
+  height: 21px;
+  text-align: center;
+  z-index: 2;
+  margin: 0 auto;
+  position: fixed;
+  top: 26vh;
+  right: 8vw;
+  background-color: rgba(255, 252, 252, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+}
+#close {
+  font-size: 13.5px;
+  color: white;
+}
+.noDisplay {
+  display: none;
+}
+.reverseBody {
+  background-color: rgb(245, 244, 241);
 }
 
 /* RESPONSIVE CSS

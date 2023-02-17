@@ -2,6 +2,8 @@
   <div class="row mt-3">
     <BannerMarketing class="banner" />
     <div class="col"><CategoriesList /></div>
+    <!--***************** Product Images & Desc *******************************-->
+    <!-- Each product image showing if the urlSlug matches the products p.slug in this component -->
     <div
       class="col-10"
       v-for="(p, i) in products"
@@ -18,6 +20,7 @@
           <p>{{ p.calories }} cal</p>
         </figcaption>
       </div>
+      <!--********************** Add To Cart ******************************-->
       <div class="summary">
         <h3>
           {{ p.name }}
@@ -103,7 +106,9 @@ export default {
       this.addProduct(productWithToppings)
     },
   },
-  created() {},
+  created() {
+    document.body.style.backgroundColor = 'rgb(245, 244, 241)'
+  },
   beforeRouteUpdate(to, from, next) {
     next()
   },

@@ -1,5 +1,5 @@
 import Axios from 'axios'
-const ordersUrl = `http://localhost:3000/orders`
+const ordersUrl = 'http://localhost:3000/orders'
 
 export default {
   namespaced: true,
@@ -7,8 +7,6 @@ export default {
   state: {
     orders: [],
   },
-
-  mutations: {},
 
   actions: {
     async storeOrderAction(context, order) {

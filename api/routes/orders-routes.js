@@ -12,11 +12,14 @@ router.get('/', (req, res) => {
     })
 })
 
+
+//!-- Post each order ---
 router.post('/', (req, res) => {
-   const name = req.fields.name
+  console.log(req.fields) // req.fields is used instead of just req. due to formidabble
+   const name = req.fields.name 
    const email = req.fields.email
-   const phone = req.fields.address
-   const orderDate = req.fields.name
+   const phone = req.fields.phone
+   const orderDate = req.fields.orderDate
    const cart = req.fields.cart
    const total = req.fields.total
 
@@ -30,11 +33,16 @@ router.post('/', (req, res) => {
     total: total
   })
 
-  order.save()
-  .catch((err) => {
-    console.log(err)
+  
+order.save(error => {
+  if (error) {
+    console.log(error)
     res.status(201).end()
-  })
+  }
+  else {
+    res.status(200).json(order);
+  }
+})
 })
 
 module.exports = router

@@ -99,19 +99,20 @@ export default {
     }),
     // Recieving date value from Calendar component and assigning it to orderDate
     datePicked(value) {
-      this.orderDate = value
+      this.order.orderDate = value
     },
-    // submitOrder() made as async in casde storeOrder() does not go through
+    // submitOrder() made as async in case storeOrder() does not go through
     async submitOrder() {
-      const order = new FormData()
+      const order = {
+        name: this.order.name,
+        email: this.order.email,
+        phone: this.order.phone,
+        orderDate: JSON.stringify(this.order.orderDate),
+        cart: JSON.stringify(this.cart),
+        total: this.totalPrice,
+      }
 
-      order.append('name', this.order.name)
-      order.append('email', this.order.email)
-      order.append('phone', this.order.phone)
-      order.append('phone', this.order.orderDate)
-      order.append('cart', JSON.stringify(this.cart))
-      order.append('total', this.totalPrice)
-
+      console.log(order)
       // Sending order through storeOrderAction with appended data to Order.js axios post
       await this.storeOrder(order)
       // Clearing cart data after order submission

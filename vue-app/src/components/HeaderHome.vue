@@ -19,7 +19,7 @@
         <router-link :to="{ name: 'Home' }" class="home-link"
           ><img
             id="paravos-logo"
-            src="../assets/media/images/Paravos_Cafe_logo.png"
+            src="../assets/media/images/marketing/Paravos_Cafe_logo.png"
             alt="Paravos Cafe logo"
         /></router-link>
         <!--*********** Nav-links ************-->
