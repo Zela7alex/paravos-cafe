@@ -69,14 +69,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-//^ Handle Production
-if(process.env.NODE_ENV === 'production') {
-  // static folder
-  app.use(express.static(__dirname + '/public/'))
-
-  // Handle SPA
-  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
-}
 
 const PORT = process.env.PORT || 3000
 
