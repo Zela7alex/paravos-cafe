@@ -6,9 +6,9 @@ import OrdersModule from './orders'
 
 Vue.use(Vuex)
 
-const baseUrl = 'http://localhost:3000' //From Node.js API
-const categoriesUrl = `${baseUrl}/categories`
-const productsUrl = `${baseUrl}/products`
+// const baseUrl = 'http://localhost:3000' //From Node.js API
+const categoriesUrl = `/categories`
+const productsUrl = `/products`
 
 export default new Vuex.Store({
   strict: true,
