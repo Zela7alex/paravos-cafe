@@ -42,7 +42,7 @@ db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', () => console.log('connected to MongoDB'))
 
 //^ --- Set public folder ---
-// app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
 //^ ---  Add headers ---
 app.use(function (req, res, next) {
