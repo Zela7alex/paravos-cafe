@@ -12,12 +12,15 @@
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@vue-stripe/vue-stripe": "^4.5.0",
     "aos": "^2.3.4",
     "axios": "^1.2.1",
     "core-js": "^3.8.3",
+    "dotenv": "^16.0.3",
     "v-calendar": "^2.4.1",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
+    "vue-stripe-checkout": "^3.5.15",
     "vuex": "^3.6.2"
   },
   "devDependencies": {

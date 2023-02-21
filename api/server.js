@@ -2,12 +2,14 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 const formidableMiddleware = require('express-formidable')
+require('dotenv').config()
 const config = require('./config/db.config.js')
 const cors = require('cors')
 const PORT = process.env.PORT || 3000
 
 // Mongoose update "true" to use strictQuery
 mongoose.set('strictQuery', true);
+
 
 //^ --- Initialize server ---
 const app = express()

@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Product = require('../models/Product')
 
+
 //!-- Get all Products ---
 router.get('/', (req, res) => {
   Product.find({})

@@ -53,6 +53,15 @@
           <label for="phone">Phone Number</label>
           <input type="text" class="form-control" v-model="order.phone" />
         </div>
+        <stripe-checkout
+          ref="checkoutRef"
+          mode="payment"
+          :pk="publishableKey"
+          :line-items="lineItems"
+          :success-url="successURL"
+          :cancel-url="cancelURL"
+          @loading="(v) => (loading = v)"
+        />
         <!-- Date selected is being received through an $emit from Calendar Checkout-->
         <CalendarCheckout @dateSelected="datePicked" />
       </div>
@@ -70,21 +79,33 @@
 import CalendarCheckout from './CalendarCheckout.vue'
 import BannerMarketing from '../components/BannerMarketing'
 import { mapState, mapGetters, mapActions } from 'vuex'
+import { StripeCheckout } from '@vue-stripe/vue-stripe'
 export default {
-  components: { CalendarCheckout, BannerMarketing },
+  components: { CalendarCheckout, BannerMarketing, StripeCheckout },
   data() {
+    this.publishableKey =
+      'pk_test_51MdhRIAlcZggnI315uV05oyRn3W8GXmk0AlGBbxpMgdXyZWzWvVCMSh9R2J2ryNqeR9guQAN98DRYUutlgIUmGy600tnhCVGd0'
     return {
       order: {
-        name: 'John',
-        email: 'john@gmail.com',
-        phone: '352-272-2817',
+        name: '',
+        email: '',
+        phone: '',
         orderDate: '',
       },
+      loading: false,
+      lineItems: [
+        {
+          price: 'price_1MdnzkAlcZggnI31YYDXkA3p',
+          quantity: 1,
+        },
+      ],
+      successURL: 'http://localhost:8080/thank-you',
+      cancelURL: 'http://localhost:8080/checkout',
     }
   },
 
   computed: {
-    ...mapState({ cart: (state) => state.cart.cart }),
+    ...mapState({ cart: (state) => state.cart.cart }, ['products']),
     ...mapGetters({
       // Bringing in the count for amount of items in cart
       itemCount: 'cart/itemCount',
@@ -101,6 +122,7 @@ export default {
     datePicked(value) {
       this.order.orderDate = value
     },
+    redirect() {},
     // submitOrder() made as async in case storeOrder() does not go through
     async submitOrder() {
       const order = {
@@ -117,8 +139,10 @@ export default {
       await this.storeOrder(order)
       // Clearing cart data after order submission
       this.clearCartData()
-      // Sending customer to thank you page
-      this.$router.push('/thank-you')
+      // Sending customer to stripe
+      this.$refs.checkoutRef.redirectToCheckout()
+
+      // this.$router.push('/thank-you')
     },
   },
 }
