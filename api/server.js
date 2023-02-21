@@ -42,7 +42,7 @@ db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', () => console.log('connected to MongoDB'))
 
 //^ --- Set public folder ---
-app.use(express.static(path.join(__dirname, 'public')))
+// app.use(express.static(path.join(__dirname, 'public')))
 
 //^ ---  Add headers ---
 app.use(function (req, res, next) {
@@ -68,6 +68,16 @@ app.use(function (req, res, next) {
   // Passing to next layer of middleware
   next();
 });
+
+// Handle production
+if(process.env.NODE_ENV === 'production') {
+  // static folder
+  app.use(express.static(path.join(__dirname, '/public/')))
+
+  //Handle SPA
+  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
+
+}
 
 
 const PORT = process.env.PORT || 3000
