@@ -5,7 +5,6 @@ const formidableMiddleware = require('express-formidable')
 require('dotenv').config()
 const config = require('./config/db.config.js')
 const cors = require('cors')
-const PORT = process.env.PORT || 3000
 
 // Mongoose update "true" to use strictQuery
 mongoose.set('strictQuery', true);
@@ -25,6 +24,7 @@ const pages = require('./routes/pages-routes.js')
 const categories = require('./routes/categories-routes')
 const products = require('./routes/products-routes')
 const orders = require('./routes/orders-routes')
+const { ppid } = require('process')
 
 app.use('/pages', pages)  
 app.use('/categories', categories)
@@ -68,6 +68,17 @@ app.use(function (req, res, next) {
   // Passing to next layer of middleware
   next();
 });
+
+//^ Handle Production
+if(process.env.NODE_ENV === 'production') {
+  // static folder
+  app.use(express.static(__dirname + '/public/'))
+
+  // Handle SPA
+  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
+}
+
+const PORT = process.env.PORT || 3000
 
 //?---- API LISTEN ROUTE - listens for the port user will be making requests to view data ----
 app.listen(PORT, () => {
