@@ -6,10 +6,6 @@ module.exports = defineConfig({
   outputDir: path.resolve(__dirname, "../api/public"),
   transpileDependencies: true,
   devServer: {
-    proxy: {
-      "/": {
-        target: "http://localhost:3000", //From Node.js API
-      },
-    },
+    proxy: "http://127.0.0.1:3000", //From Node.js API
   },
 });
