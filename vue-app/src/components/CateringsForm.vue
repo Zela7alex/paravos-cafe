@@ -5,9 +5,10 @@
     <form action="submit">
       <label for="fname">First Name</label>
       <input
+        v-model="firstName"
         type="text"
         id="fname"
-        name="firstname"
+        :firstName="firstName"
         placeholder="Your name.."
       />
 
@@ -15,27 +16,77 @@
       <input
         type="text"
         id="lname"
-        name="lastname"
+        v-model="lastName"
+        :lastName="lastName"
         placeholder="Your last name.."
       />
-      <label for="lname">Email</label>
-      <input type="text" id="email" name="email" placeholder="Your email.." />
+      <label for="email">Email</label>
+      <input
+        type="text"
+        id="email"
+        v-model="email"
+        :email="email"
+        placeholder="Your email.."
+      />
+
+      <label for="date">Date</label>
+      <input
+        type="text"
+        id="date"
+        v-model="date"
+        :date="date"
+        placeholder="Date of event.."
+      />
 
       <label for="partyCount">Number of people</label>
       <input
         type="text"
         id="party-count"
-        name="partycount"
+        v-model="numOfPeople"
+        :numOfPeople="numOfPeople"
         placeholder="Your party count.."
       />
 
-      <input type="submit" value="Submit" />
+      <input
+        type="submit"
+        value="Submit"
+        @click.prevent="createNewInquiryStart()"
+      />
     </form>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapActions } from 'vuex'
+export default {
+  methods: {
+    ...mapActions(['createNewInquiryAction']),
+    createNewInquiryStart: function () {
+      let payload = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        date: this.date,
+        numOfPeople: this.numOfPeople,
+      }
+      this.createNewInquiryAction(payload)
+      this.firstName = ''
+      this.lastName = ''
+      this.email = ''
+      this.date = ''
+      this.numOfPeople = ''
+    },
+  },
+  data() {
+    return {
+      firstName: '',
+      lastName: '',
+      email: '',
+      date: '',
+      numOfPeople: '',
+    }
+  },
+}
 </script>
 
 <style scoped>

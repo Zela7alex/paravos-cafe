@@ -9,6 +9,7 @@ Vue.use(Vuex)
 // const baseUrl = 'http://localhost:3000' //From Node.js API
 const categoriesUrl = `/categories`
 const productsUrl = `/products`
+const contactUrl = `/`
 
 export default new Vuex.Store({
   strict: true,
@@ -22,6 +23,7 @@ export default new Vuex.Store({
     categories: [],
     products: [],
     allPoducts: [],
+    inquiries: [],
   },
 
   getters: {},
@@ -60,6 +62,16 @@ export default new Vuex.Store({
     //^ Action to retrieve only "all products"
     async setAllProductsAction(context) {
       context.commit('setAllProducts', (await Axios.get(productsUrl)).data)
+    },
+
+    //^ Post catering inquiry
+    async createNewInquiryAction(context, payload) {
+      let data = payload
+
+      // const res = await Axios.post(contactUrl, data)
+
+      // res.status == 200 ? console.log('success') : console.log('error')
+      return await Axios.post(contactUrl, data)
     },
   },
 })

@@ -1,11 +1,11 @@
-const { defineConfig } = require("@vue/cli-service");
+const { defineConfig } = require('@vue/cli-service')
 // eslint-disable-next-line no-unused-vars
-const path = require("path");
+const path = require('path')
 
 module.exports = defineConfig({
-  outputDir: path.resolve(__dirname, "../api/public"),
+  outputDir: path.resolve(__dirname, '../api/public'),
   transpileDependencies: true,
   devServer: {
-    proxy: "http://127.0.0.1:3000", //From Node.js API
+    proxy: 'http://127.0.0.1:3000', //From Node.js API
   },
-});
+})

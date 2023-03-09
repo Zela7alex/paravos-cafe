@@ -12,10 +12,11 @@ mongoose.set('strictQuery', true);
 
 //^ --- Initialize server ---
 const app = express()
+
+//^ ---  Middleware --- 
 app.use(cors())
 
 // Formidable used to parse incoming order to db
-//^ --- Formidable Middleware --- 
 app.use(formidableMiddleware())
 
 
@@ -24,12 +25,14 @@ const pages = require('./routes/pages-routes.js')
 const categories = require('./routes/categories-routes')
 const products = require('./routes/products-routes')
 const orders = require('./routes/orders-routes')
+const contact = require('./routes/contact-routes')
 const { ppid } = require('process')
 
 app.use('/pages', pages)  
 app.use('/categories', categories)
 app.use('/products', products)
 app.use('/orders', orders)
+app.use('/', contact)
 
 
 //^ --- Connect to MongoDB ----
@@ -41,7 +44,7 @@ const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', () => console.log('connected to MongoDB'))
 
-//^ --- Set public folder ---
+//^ --- Set public folder to export to Cloud ---
 app.use(express.static(path.join(__dirname, 'public')))
 
 //^ ---  Add headers ---
