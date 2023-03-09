@@ -118,7 +118,7 @@ input[type='submit']:hover {
 
 div {
   width: 25%;
-  height: 57%;
+  height: 67%;
   border: 1px solid green;
   border-radius: 5px;
   background-color: #f2f2f2;
