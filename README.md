@@ -1,5 +1,5 @@
 
-* [Description](#Paravos Cafe)
+* [Description](#Paravos-Cafe)
 * [Functionality](#Functionality)
 * [Future-Development](#Future-Development)
 * [Installation](#Installation)
@@ -7,7 +7,7 @@
 * [Demo](#Demo)
 
 
-# Paravos Cafe
+# Paravos-Cafe
 Welcome to the Paravos Cafe, a coffee shop that aims to provide an exceptional coffee experience for all its customers. This repository contains the source code for the Paravos Cafe website, which is built using Vue for the client, Node for the server and MongoDB for the database. This project is still under development and public for viewing purposes but will soon go private. 
 
 ## Functionality
